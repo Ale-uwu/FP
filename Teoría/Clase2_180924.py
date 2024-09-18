@@ -23,4 +23,4 @@ def imc(peso,altura):
 '''
 # saludar()
 # multiplicar(2,3)
-# imc(71,1.74)
+# imc(71,1.74).

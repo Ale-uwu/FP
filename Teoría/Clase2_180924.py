@@ -1,5 +1,5 @@
 
-# Declaración de una función
+# Declaración de una función a
 def nombre_funcion(id_arg1, id_arg2, id_arg3):
     pass
 

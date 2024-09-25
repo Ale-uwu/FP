@@ -10,7 +10,8 @@ def multiplicar(a,b):
     print("La multiplicación de a*b es igual a",a*b)
 
 def imc(peso,altura):
-    print("Tu imc es",peso/altura**2)
+    #print("Tu imc es",peso/altura**2)
+    return peso/altura**2
 '''
     Utilizando "return" sería:
         def imc(peso,altura):

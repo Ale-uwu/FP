@@ -20,7 +20,7 @@ public class QueueLimitadaImpl implements QueueLimitada {
             buffer.add(elemento);
             return elemento;
         } else {
-            System.out.println("No se pueden añadir más elementos, el buffer está lleno");
+            System.out.println("** No se pueden añadir más elementos, el buffer está lleno");
             // Código de error
             return -1;
         }
@@ -32,7 +32,7 @@ public class QueueLimitadaImpl implements QueueLimitada {
             // No devería devolver nunca null 
             return buffer.poll();
         } else {
-            System.out.println("No se pueden extraer elementos, el buffer está vacío");
+            System.out.println("** No se pueden extraer elementos, el buffer está vacío");
             return -1;
         }
     }
@@ -61,7 +61,7 @@ public class QueueLimitadaImpl implements QueueLimitada {
     public int generarElemento(int minimo,int maximo) {
         Random numAleatorio = new Random();
         if (minimo >= maximo) {
-            throw new IllegalArgumentException("El límite inferior debe ser menor que el límite superior.");
+            throw new IllegalArgumentException("** El límite inferior debe ser menor que el límite superior.");
         }
         return numAleatorio.nextInt(maximo - minimo) + minimo;
     }

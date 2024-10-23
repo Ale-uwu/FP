@@ -52,11 +52,11 @@ public class ProdCons {
         hiloProd Productor = new hiloProd(bufferMesa);
         hiloCons Consumidor = new hiloCons(bufferMesa);
         // Prueba con 2 consumidores
-        hiloCons Consumidor2 = new hiloCons(bufferMesa);
+        //hiloCons Consumidor2 = new hiloCons(bufferMesa);
 
         Productor.start();
         Consumidor.start();
-        Consumidor2.start();
+        //Consumidor2.start();
         /* Anotacion sobre el segundo consumidor.
          * Para que estuviese mejor hecho el código 
          * se deberían repartir entre los consumidores
@@ -70,7 +70,7 @@ public class ProdCons {
         try{
             Productor.join();
             Consumidor.join();
-            Consumidor2.join();
+            //Consumidor2.join();
         } catch(InterruptedException e){
             e.printStackTrace();
         }

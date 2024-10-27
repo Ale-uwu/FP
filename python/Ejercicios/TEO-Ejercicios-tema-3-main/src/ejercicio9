@@ -1,0 +1,6 @@
+from typing import List,NamedTuple
+Persona = NamedTuple("Persona",[("nombre",str),("edad",int)])
+def lee_personas(n:int)->list[tuple]:
+    aux = []
+    for i in range(n):
+        aux.append(Persona())

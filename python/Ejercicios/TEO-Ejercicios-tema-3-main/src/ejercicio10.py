@@ -1,8 +1,10 @@
 from collections import namedtuple
 import csv
 from datetime import datetime
+from typing import NamedTuple
 
-Libro = namedtuple("Libro", "isbn,titulo,autor,fecha_publicacion,precio,disponible")
+#Libro = namedtuple("Libro", "isbn,titulo,autor,fecha_publicacion,precio,disponible")
+Libro = NamedTuple("Libro",[("isbn",str),("titulo",str),("autor",str),("fecha_publicacion",datetime.date),("precio",float),("disponible",bool)])
 
 
 def lee_libros(ruta_csv):
@@ -21,29 +23,44 @@ def lee_libros(ruta_csv):
 
 
 # TODO: Implemente las funciones solicitadas en el enunciado
-def autores_disponibles(libros, inicial):
-    pass
+def autores_disponibles(libros:list[Libro], inicial):
+    autoresDisponibles = []
+    for libro in libros:
+        if libro.autor[0] == inicial and libro.disponible == True:
+            autoresDisponibles.append(libro.autor)
+    return autoresDisponibles
 
+def titulos_baratos_actuales(libros:list[Libro]):
+    titulosBaratosActuales = []
+    for libro in libros:
+        if libro.precio < 20 and libro.fecha_publicacion.year >= 2001:
+            titulosBaratosActuales.append(libro.titulo)
+    return titulosBaratosActuales
 
-def titulos_baratos_actuales(libros):
-    pass
+def media_precios(libros:list[Libro], palabra:str):
+    auxPrecioLibrosContienenPalabra = []
+    mediaPrecios = None
+    for libro in libros:
+        if palabra in libro.titulo:
+            auxPrecioLibrosContienenPalabra.append(libro.precio)
+    if len(auxPrecioLibrosContienenPalabra) != 0:
+        mediaPrecios = sum(auxPrecioLibrosContienenPalabra)/len(auxPrecioLibrosContienenPalabra)
+    return mediaPrecios
 
-
-def media_precios(libros, palabra):
-    pass
-
-
-def libro_mas_reciente(libros):
-    pass
-
+def libro_mas_reciente(libros:list[Libro]):
+    libroMasReciente = libros[0]
+    for libro in libros:
+        if libro.fecha_publicacion > libroMasReciente.fecha_publicacion:
+            libroMasReciente = libro
+    return libro
 
 if __name__ == "__main__":
-    libros = lee_libros("data/libreria.csv")
-    print(f"Se han leído {len(libros)} libros.")
+    libros = lee_libros("python\Ejercicios\TEO-Ejercicios-tema-3-main\data\libreria.csv")
+    print(f"Se han leído {len(libros)} libros.\n")
 
-    print("Autores disponibles:", autores_disponibles(libros, "M"))
-    print("Titulos baratos actuales:", titulos_baratos_actuales(libros))
+    print(f"Autores disponibles: {autores_disponibles(libros, "M")}\n")
+    print(f"Titulos baratos actuales: {titulos_baratos_actuales(libros)}\n")
     print(
-        "Media de precios de libros con la palabra 'El':", media_precios(libros, "El")
+        f"Media de precios de libros con la palabra 'El': {media_precios(libros, "El")}\n"
     )
     print("Libro más reciente:", libro_mas_reciente(libros))
